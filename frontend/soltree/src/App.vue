@@ -8,6 +8,15 @@
     </a>
   </div>
   <HelloWorld msg="Vite + Vue + TS" />
+
+  <Button label="Primary"></Button>
+  <Button label="Secondary" class="p-button-secondary"></Button>
+  <Button label="Success" class="p-button-success"></Button>
+  <Button label="Info" class="p-button-info" ></Button>
+  <Button label="Warning" class="p-button-warning"></Button>
+  <Button label="Help" class="p-button-help"></Button>
+  <Button label="Danger" class="p-button-danger"></Button>
+
 </template>
 
 <script setup lang="ts">
