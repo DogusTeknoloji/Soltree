@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gen": "openapi-generator-cli generate -i http://localhost:5556/swagger/v1/swagger.json -g typescript-axios -o src/services/soltree-api --skip-validate-spec"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "primeicons": "^5.0.0",
     "primevue": "^3.15.0",
     "vue": "^3.2.37"

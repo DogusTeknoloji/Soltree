@@ -9,7 +9,7 @@
   </div>
   <HelloWorld msg="Vite + Vue + TS" />
 
-  <Button label="Primary"></Button>
+  <Button label="Primary" @click="getWeatherForecast"></Button>
   <Button label="Secondary" class="p-button-secondary"></Button>
   <Button label="Success" class="p-button-success"></Button>
   <Button label="Info" class="p-button-info" ></Button>
@@ -21,6 +21,15 @@
 
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
+import { WeatherForecastApi } from './services/soltree-api';
+
+const weatherForecastApi = new WeatherForecastApi();
+
+const getWeatherForecast = async () => {
+  const response =  await weatherForecastApi.getWeatherForecast();
+  console.log(response.data);
+};
+
 </script>
 
 <style scoped>
