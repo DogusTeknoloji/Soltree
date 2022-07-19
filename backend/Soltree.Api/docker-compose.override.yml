@@ -8,6 +8,8 @@ services:
     ports:
       - "80"
       - "443"
+    depends_on:
+      - db
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

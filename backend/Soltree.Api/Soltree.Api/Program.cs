@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Soltree.Api.Data;
+using Soltree.Api.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,8 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 {
     opt.UseNpgsql(builder.Configuration.GetConnectionString("SoltreeConnectionString"));
 });
+
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 var app = builder.Build();
 
