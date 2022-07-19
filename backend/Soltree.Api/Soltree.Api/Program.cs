@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Soltree.Api.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -16,6 +19,10 @@ builder.Services.AddCors(options =>
         });
 });
 
+builder.Services.AddDbContext<AppDbContext>(opt =>
+{
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("SoltreeConnectionString"));
+});
 
 var app = builder.Build();
 

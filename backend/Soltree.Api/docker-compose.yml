@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  soltree.api:
+    image: ${DOCKER_REGISTRY-}soltreeapi
+    build:
+      context: .
+      dockerfile: Soltree.Api/Dockerfile
+  db:
+    image: postgres:14.1-alpine
