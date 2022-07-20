@@ -4,6 +4,9 @@ using Soltree.Api.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services
+    .AddGraphQLServer()
+    .AddQueryType<Query>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -27,6 +30,9 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
+
+
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -42,6 +48,9 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGraphQL();
+
 
 
 // Seed Database
