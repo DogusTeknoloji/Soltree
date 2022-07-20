@@ -1,12 +1,18 @@
 using Microsoft.EntityFrameworkCore;
 using Soltree.Api.Data;
 using Soltree.Api.Data.Repositories;
+using Soltree.Api.Graphql.Mutations;
+using Soltree.Api.Graphql.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .AddGraphQLServer()
-    .AddQueryType<Query>();
+    .RegisterDbContext<AppDbContext>()
+    .AddQueryType<BrandQuery>()
+    .AddMutationType<BrandMutation>()
+    .AddFiltering()
+    .AddSorting();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
