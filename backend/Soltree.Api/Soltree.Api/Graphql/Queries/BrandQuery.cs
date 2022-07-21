@@ -3,7 +3,7 @@ using Soltree.Api.Data.Etities;
 
 namespace Soltree.Api.Graphql.Queries
 {
-    [ExtendObjectType(typeof(Query))]
+    [ExtendObjectType("Query")]
     public class BrandQuery
     {
         
@@ -12,7 +12,7 @@ namespace Soltree.Api.Graphql.Queries
         [UseFiltering]
         public IQueryable<Brand> GetBrands([Service] AppDbContext context)
         {
-            return context.Brands;
+            return context.Brands.AsQueryable();
         }
     }
 }

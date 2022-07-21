@@ -2,12 +2,12 @@
 
 namespace Soltree.Api.Data.Etities
 {
-    public class Type:BaseEntity
-    {   
+    public class DeviceType : BaseEntity
+    {
         [Required]
-        public string Name  { get; set; }
+        public string Name { get; set; }
 
-        public Type(string name)
+        public DeviceType(string name)
         {
             Name = name;
         }

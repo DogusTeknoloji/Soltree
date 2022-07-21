@@ -3,25 +3,26 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Soltree.Api.Data.Etities
 {
-    public class Model:BaseEntity
+    public class Model : BaseEntity
     {
         [Required]
         public string Name { get; set; }
 
         [Required]
-        [ForeignKey("BrandId")]
-        public int BrandId { get; set; }
+        public Guid BrandId { get; set; }
+
+        public Brand? Brand { get; set; }
+
         [Required]
-        [ForeignKey("TypeId")]
-        public int TypeId   { get; set; }
+        public Guid DeviceTypeId { get; set; }
 
-        
+        public DeviceType? DeviceType { get; set; }
 
-        public Model(string name,int brandId, int typeId)
+        public Model(string name, Guid brandId, Guid deviceTypeId)
         {
             Name = name;
             BrandId = brandId;
-            TypeId = typeId;
+            DeviceTypeId = deviceTypeId;
         }
     }
 }

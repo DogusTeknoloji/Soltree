@@ -1,15 +1,17 @@
 ﻿using Soltree.Api.Data;
 using Soltree.Api.Data.Dtos;
 using Soltree.Api.Data.Dtos.Model;
+using Soltree.Api.Data.Etities;
 
 namespace Soltree.Api.Graphql.Mutations
 {
+    [ExtendObjectType("Mutation")]
     public class ModelMutation
     {
         public InsertResponse InsertModel(ModelInsertRequest request, [Service] AppDbContext context)
         {
             var respone = new InsertResponse();
-            var model = new Data.Etities.Model(request.Name,request.BrandId,request.TypeId);
+            var model = new Model(request.Name, request.BrandId, request.TypeId);
 
             context.Models.Add(model);
             context.SaveChanges();

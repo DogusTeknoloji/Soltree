@@ -1,17 +1,19 @@
 ﻿using Soltree.Api.Data;
 using Soltree.Api.Data.Dtos;
 using Soltree.Api.Data.Dtos.Type;
+using Soltree.Api.Data.Etities;
 
 namespace Soltree.Api.Graphql.Mutations
 {
-    public class TypeMutation
+    [ExtendObjectType("Mutation")]
+    public class DeviceTypeMutation
     {
-        public InsertResponse InsertType(TypeInsertRequest request, [Service] AppDbContext context)
+        public InsertResponse InsertDeviceType(DeviceTypeInsertRequest request, [Service] AppDbContext context)
         {
             var respone = new InsertResponse();
-            var type = new Data.Etities.Type(request.Name);
+            var type = new DeviceType(request.Name);
 
-            context.Types.Add(type);
+            context.DeviceTypes.Add(type);
             context.SaveChanges();
 
             respone.Id = type.Id;
@@ -19,9 +21,9 @@ namespace Soltree.Api.Graphql.Mutations
             return respone;
         }
 
-        public bool UpdateType(TypeUpdateRequest request, [Service] AppDbContext context)
+        public bool UpdateDeviceType(DeviceTypeUpdateRequest request, [Service] AppDbContext context)
         {
-            var type = context.Types.SingleOrDefault(m => m.Id == request.Id);
+            var type = context.DeviceTypes.SingleOrDefault(m => m.Id == request.Id);
 
             if (type != null)
             {
@@ -35,9 +37,9 @@ namespace Soltree.Api.Graphql.Mutations
             return false;
         }
 
-        public bool DeleteType(Guid id, [Service] AppDbContext context)
+        public bool DeleteDeviceType(Guid id, [Service] AppDbContext context)
         {
-            var type = context.Types.SingleOrDefault(m => m.Id == id);
+            var type = context.DeviceTypes.SingleOrDefault(m => m.Id == id);
 
             if (type != null)
             {

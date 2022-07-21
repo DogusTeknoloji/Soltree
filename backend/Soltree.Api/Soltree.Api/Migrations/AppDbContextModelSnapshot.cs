@@ -37,23 +37,42 @@ namespace Soltree.Api.Migrations
                     b.ToTable("Brands");
                 });
 
+            modelBuilder.Entity("Soltree.Api.Data.Etities.DeviceType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DeviceTypes");
+                });
+
             modelBuilder.Entity("Soltree.Api.Data.Etities.Model", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<int>("BrandId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("BrandId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("DeviceTypeId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("TypeId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
+
+                    b.HasIndex("DeviceTypeId");
 
                     b.ToTable("Models");
                 });
@@ -83,14 +102,16 @@ namespace Soltree.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<Guid>("SymptomCategoryId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("SymptomCategoryId");
 
                     b.ToTable("Symptoms");
                 });
@@ -110,19 +131,34 @@ namespace Soltree.Api.Migrations
                     b.ToTable("SymptomCategories");
                 });
 
-            modelBuilder.Entity("Soltree.Api.Data.Etities.Type", b =>
+            modelBuilder.Entity("Soltree.Api.Data.Etities.Model", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                    b.HasOne("Soltree.Api.Data.Etities.Brand", "Brand")
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.HasOne("Soltree.Api.Data.Etities.DeviceType", "DeviceType")
+                        .WithMany()
+                        .HasForeignKey("DeviceTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasKey("Id");
+                    b.Navigation("Brand");
 
-                    b.ToTable("Types");
+                    b.Navigation("DeviceType");
+                });
+
+            modelBuilder.Entity("Soltree.Api.Data.Etities.Symptom", b =>
+                {
+                    b.HasOne("Soltree.Api.Data.Etities.SymptomCategory", "SymptomCategory")
+                        .WithMany()
+                        .HasForeignKey("SymptomCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SymptomCategory");
                 });
 #pragma warning restore 612, 618
         }

@@ -2,11 +2,11 @@
 
 namespace Soltree.Api.Data.Etities
 {
-    public class Solution:BaseEntity
-
+    public class Solution : BaseEntity
     {
         [Required]
         public string Title { get; set; }
+
         [Required]
         public string Description { get; set; }
 
@@ -15,6 +15,5 @@ namespace Soltree.Api.Data.Etities
             Title = title;
             Description = description;
         }
-
     }
 }

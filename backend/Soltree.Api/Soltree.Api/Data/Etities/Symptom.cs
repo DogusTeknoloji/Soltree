@@ -3,18 +3,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Soltree.Api.Data.Etities
 {
-    public class Symptom:BaseEntity
+    public class Symptom : BaseEntity
     {
         [Required]
         public string Name { get; set; }
 
         [Required]
-        [ForeignKey("CategoryId")]
-        public int CategoryId { get; set; }
-        public Symptom(string name, int categoryId)
+        public Guid SymptomCategoryId { get; set; }
+
+        public SymptomCategory? SymptomCategory { get; set; }
+
+        public Symptom(string name, Guid symptomCategoryId)
         {
             Name = name;
-            CategoryId = categoryId;
+            SymptomCategoryId = symptomCategoryId;
         }
     }
 }

@@ -1,15 +1,17 @@
 ﻿using Soltree.Api.Data;
 using Soltree.Api.Data.Dtos;
 using Soltree.Api.Data.Dtos.Brand;
+using Soltree.Api.Data.Etities;
 
 namespace Soltree.Api.Graphql.Mutations
 {
+    [ExtendObjectType("Mutation")]
     public class BrandMutation
     {
         public InsertResponse InsertBrand(BrandInsertRequest request, [Service] AppDbContext context)
         {
             var respone = new InsertResponse();
-            var brand = new Data.Etities.Brand(request.Name);
+            var brand = new Brand(request.Name);
 
             context.Brands.Add(brand);
             context.SaveChanges();

@@ -6,6 +6,7 @@ namespace Soltree.Api.Data.Etities
     {
         [Required]
         public string Name { get; set; }
+
         public Brand(string name)
         {
             Name = name;

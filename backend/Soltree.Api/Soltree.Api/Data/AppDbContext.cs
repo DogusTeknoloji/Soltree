@@ -10,11 +10,21 @@ namespace Soltree.Api.Data
         { }
 
         public DbSet<Brand> Brands => Set<Brand>();
-        public DbSet<Etities.Type> Types => Set<Etities.Type>();
+        public DbSet<DeviceType> DeviceTypes => Set<DeviceType>();
         public DbSet<Model> Models => Set<Model>();
         public DbSet<Symptom> Symptoms => Set<Symptom>();
         public DbSet<SymptomCategory> SymptomCategories => Set<SymptomCategory>();
         public DbSet<Solution> Solutions => Set<Solution>();
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+
+        }
     }
 }

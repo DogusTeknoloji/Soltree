@@ -3,7 +3,7 @@ using Soltree.Api.Data.Etities;
 
 namespace Soltree.Api.Graphql.Queries
 {
-    [ExtendObjectType((typeof(Query)))]
+    [ExtendObjectType("Query")]
     public class SolutionQuery
     {
         [UseOffsetPaging]
@@ -11,7 +11,7 @@ namespace Soltree.Api.Graphql.Queries
         [UseFiltering]
         public IQueryable<Solution> GetSolutions([Service] AppDbContext context)
         {
-            return context.Solutions;
+            return context.Solutions.AsQueryable();
         }
     }
 }

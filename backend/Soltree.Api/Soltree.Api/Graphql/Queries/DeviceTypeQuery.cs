@@ -3,15 +3,15 @@ using Soltree.Api.Data.Etities;
 
 namespace Soltree.Api.Graphql.Queries
 {
-    [ExtendObjectType((typeof(Query)))]
-    public class TypeQuery
+    [ExtendObjectType("Query")]
+    public class DeviceTypeQuery
     {
         [UseOffsetPaging]
         [UseSorting]
         [UseFiltering]
-        public IQueryable<Data.Etities.Type> GetTypes([Service] AppDbContext context)
+        public IQueryable<DeviceType> GetDeviceTypes([Service] AppDbContext context)
         {
-            return context.Types;
+            return context.DeviceTypes.AsQueryable();
         }
     }
 }

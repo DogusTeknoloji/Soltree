@@ -1,15 +1,17 @@
 ﻿using Soltree.Api.Data;
 using Soltree.Api.Data.Dtos;
 using Soltree.Api.Data.Dtos.Solution;
+using Soltree.Api.Data.Etities;
 
 namespace Soltree.Api.Graphql.Mutations
 {
+    [ExtendObjectType("Mutation")]
     public class SolutionMutation
     {
         public InsertResponse InsertSolution(SolutionInsertRequest request, [Service] AppDbContext context)
         {
             var respone = new InsertResponse();
-            var solution = new Data.Etities.Solution(request.Title, request.Description);
+            var solution = new Solution(request.Title, request.Description);
 
             context.Solutions.Add(solution);
             context.SaveChanges();
@@ -26,7 +28,7 @@ namespace Soltree.Api.Graphql.Mutations
             if (solution != null)
             {
                 solution.Title = request.Title;
-                solution.Description = request.Desc;
+                solution.Description = request.Description;
 
                 context.SaveChanges();
 

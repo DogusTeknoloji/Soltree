@@ -9,23 +9,22 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddGraphQLServer()
     .RegisterDbContext<AppDbContext>()
-    .AddQueryType<Query>()
-    .AddTypeExtension<BrandQuery>()
-    .AddTypeExtension<ModelQuery>()
-    .AddTypeExtension<TypeQuery>()
-    //.AddTypeExtension<SolutionQuery>()
-    //.AddTypeExtension<SymptomQuery>()
-    //.AddTypeExtension<SymptomCategoryQuery>()
-    //.AddMutationType<BrandMutation>()
-    //.AddMutationType<ModelMutation>()
-    //.AddMutationType<SolutionMutation>()
-    //.AddMutationType<SymptomMutation>()
-    //.AddMutationType<SymptomCategoryMutation>()
-    //.AddMutationType<TypeMutation>()
+    .AddQueryType(d => d.Name("Query"))
+        .AddTypeExtension<BrandQuery>()
+        .AddTypeExtension<ModelQuery>()
+        .AddTypeExtension<DeviceTypeQuery>()
+        .AddTypeExtension<SolutionQuery>()
+        .AddTypeExtension<SymptomQuery>()
+        .AddTypeExtension<SymptomCategoryQuery>()
+    .AddMutationType(d => d.Name("Mutation"))
+        .AddTypeExtension<BrandMutation>()
+        .AddTypeExtension<ModelMutation>()
+        .AddTypeExtension<SolutionMutation>()
+        .AddTypeExtension<SymptomMutation>()
+        .AddTypeExtension<SymptomCategoryMutation>()
+        .AddTypeExtension<DeviceTypeMutation>()
     .AddFiltering()
     .AddSorting();
-
-
 
 
 builder.Services.AddControllers();

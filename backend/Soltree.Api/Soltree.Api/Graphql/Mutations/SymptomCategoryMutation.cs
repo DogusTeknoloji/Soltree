@@ -1,15 +1,17 @@
 ﻿using Soltree.Api.Data;
 using Soltree.Api.Data.Dtos;
 using Soltree.Api.Data.Dtos.SymptomCategory;
+using Soltree.Api.Data.Etities;
 
 namespace Soltree.Api.Graphql.Mutations
 {
+    [ExtendObjectType("Mutation")]
     public class SymptomCategoryMutation
     {
         public InsertResponse InsertSymptomCategory(SymptomCategoryInsertRequest request, [Service] AppDbContext context)
         {
             var respone = new InsertResponse();
-            var symptomcategory = new Data.Etities.SymptomCategory(request.Name);
+            var symptomcategory = new SymptomCategory(request.Name);
 
             context.SymptomCategories.Add(symptomcategory);
             context.SaveChanges();
