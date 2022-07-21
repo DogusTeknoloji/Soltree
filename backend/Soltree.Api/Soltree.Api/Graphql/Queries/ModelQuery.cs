@@ -3,16 +3,15 @@ using Soltree.Api.Data.Etities;
 
 namespace Soltree.Api.Graphql.Queries
 {
-    [ExtendObjectType(typeof(Query))]
-    public class BrandQuery
+    [ExtendObjectType((typeof(Query)))]
+    public class ModelQuery
     {
-        
         [UseOffsetPaging]
         [UseSorting]
         [UseFiltering]
-        public IQueryable<Brand> GetBrands([Service] AppDbContext context)
+        public IQueryable<Model> GetModels([Service] AppDbContext context)
         {
-            return context.Brands;
+            return context.Models;
         }
     }
 }

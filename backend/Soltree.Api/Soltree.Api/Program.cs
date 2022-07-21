@@ -9,10 +9,24 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddGraphQLServer()
     .RegisterDbContext<AppDbContext>()
-    .AddQueryType<BrandQuery>()
-    .AddMutationType<BrandMutation>()
+    .AddQueryType<Query>()
+    .AddTypeExtension<BrandQuery>()
+    .AddTypeExtension<ModelQuery>()
+    .AddTypeExtension<TypeQuery>()
+    //.AddTypeExtension<SolutionQuery>()
+    //.AddTypeExtension<SymptomQuery>()
+    //.AddTypeExtension<SymptomCategoryQuery>()
+    //.AddMutationType<BrandMutation>()
+    //.AddMutationType<ModelMutation>()
+    //.AddMutationType<SolutionMutation>()
+    //.AddMutationType<SymptomMutation>()
+    //.AddMutationType<SymptomCategoryMutation>()
+    //.AddMutationType<TypeMutation>()
     .AddFiltering()
     .AddSorting();
+
+
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

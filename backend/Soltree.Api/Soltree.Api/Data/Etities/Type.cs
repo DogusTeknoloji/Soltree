@@ -2,11 +2,12 @@
 
 namespace Soltree.Api.Data.Etities
 {
-    public class Brand : BaseEntity
-    {
+    public class Type:BaseEntity
+    {   
         [Required]
-        public string Name { get; set; }
-        public Brand(string name)
+        public string Name  { get; set; }
+
+        public Type(string name)
         {
             Name = name;
         }

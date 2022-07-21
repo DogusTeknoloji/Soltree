@@ -2,11 +2,12 @@
 
 namespace Soltree.Api.Data.Etities
 {
-    public class Brand : BaseEntity
+    public class SymptomCategory:BaseEntity
     {
         [Required]
         public string Name { get; set; }
-        public Brand(string name)
+
+        public SymptomCategory(string name)
         {
             Name = name;
         }
