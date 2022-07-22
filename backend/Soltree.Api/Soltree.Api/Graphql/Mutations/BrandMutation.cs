@@ -11,7 +11,10 @@ namespace Soltree.Api.Graphql.Mutations
         public InsertResponse InsertBrand(BrandInsertRequest request, [Service] AppDbContext context)
         {
             var respone = new InsertResponse();
-            var brand = new Brand(request.Name);
+            var brand = new Brand()
+            {
+                Name = request.Name
+            };
 
             context.Brands.Add(brand);
             context.SaveChanges();

@@ -11,7 +11,11 @@ namespace Soltree.Api.Graphql.Mutations
         public InsertResponse InsertSolution(SolutionInsertRequest request, [Service] AppDbContext context)
         {
             var respone = new InsertResponse();
-            var solution = new Solution(request.Title, request.Description);
+            var solution = new Solution()
+            {
+                Title = request.Title,
+                Description = request.Description
+            };
 
             context.Solutions.Add(solution);
             context.SaveChanges();

@@ -24,7 +24,8 @@ builder.Services
         .AddTypeExtension<SymptomCategoryMutation>()
         .AddTypeExtension<DeviceTypeMutation>()
     .AddFiltering()
-    .AddSorting();
+    .AddSorting()
+    .AddProjections();
 
 
 builder.Services.AddControllers();

@@ -11,7 +11,11 @@ namespace Soltree.Api.Graphql.Mutations
         public InsertResponse InsertSymptom(SymptomInsertRequest request, [Service] AppDbContext context)
         {
             var respone = new InsertResponse();
-            var symptom = new Symptom(request.Name, request.SymptomCategoryId);
+            var symptom = new Symptom()
+            {
+                Name = request.Name,
+                SymptomCategoryId = request.SymptomCategoryId
+            };
 
             context.Symptoms.Add(symptom);
             context.SaveChanges();

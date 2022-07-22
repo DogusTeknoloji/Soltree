@@ -7,6 +7,7 @@ namespace Soltree.Api.Graphql.Queries
     public class ModelQuery
     {
         [UseOffsetPaging]
+        [UseProjection]
         [UseSorting]
         [UseFiltering]
         public IQueryable<Model> GetModels([Service] AppDbContext context)

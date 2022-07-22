@@ -11,7 +11,10 @@ namespace Soltree.Api.Graphql.Mutations
         public InsertResponse InsertDeviceType(DeviceTypeInsertRequest request, [Service] AppDbContext context)
         {
             var respone = new InsertResponse();
-            var type = new DeviceType(request.Name);
+            var type = new DeviceType()
+            {
+                Name = request.Name
+            };
 
             context.DeviceTypes.Add(type);
             context.SaveChanges();

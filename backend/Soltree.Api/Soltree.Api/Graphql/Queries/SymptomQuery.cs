@@ -7,6 +7,7 @@ namespace Soltree.Api.Graphql.Queries
     public class SymptomQuery
     {
         [UseOffsetPaging]
+        [UseProjection]
         [UseSorting]
         [UseFiltering]
         public IQueryable<Symptom> GetSymptoms([Service] AppDbContext context)
