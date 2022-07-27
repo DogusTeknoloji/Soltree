@@ -6,23 +6,16 @@ namespace Soltree.Api.Data.Etities
     public class Model : BaseEntity
     {
         [Required]
-        public string Name { get; set; }
-        [IsProjected(true)]
+        public string? Name { get; set; }
+
         [Required]
-        public Guid BrandId { get; set; }
+        public Guid? BrandId { get; set; }
 
         public Brand? Brand { get; set; }
         [IsProjected(true)]
         [Required]
-        public Guid DeviceTypeId { get; set; }
+        public Guid? DeviceTypeId { get; set; }
 
         public DeviceType? DeviceType { get; set; }
-
-        public Model(string name, Guid brandId, Guid deviceTypeId)
-        {
-            Name = name;
-            BrandId = brandId;
-            DeviceTypeId = deviceTypeId;
-        }
     }
 }

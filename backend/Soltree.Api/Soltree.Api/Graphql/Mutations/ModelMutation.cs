@@ -11,7 +11,12 @@ namespace Soltree.Api.Graphql.Mutations
         public InsertResponse InsertModel(ModelInsertRequest request, [Service] AppDbContext context)
         {
             var respone = new InsertResponse();
-            var model = new Model(request.Name, request.BrandId, request.TypeId);
+            var model = new Model()
+            {
+                Name = request.Name,
+                BrandId = request.BrandId,
+                DeviceTypeId = request.DeviceTypeId
+            };
 
             context.Models.Add(model);
             context.SaveChanges();
