@@ -10,19 +10,22 @@
     </ul> -->
     <!-- <Dropdown :options="brandsList" option-label="brandNames" placeholder="Select a Brand"></Dropdown> -->
     <div id="brandDropdown">
-      <Dropdown :options="brands" option-label="name" option-value="id" placeholder="Select a Brand"></Dropdown>
+      <Dropdown v-model="selectedBrand" :options="brands" option-label="name" option-value="id" placeholder="Select a Brand"></Dropdown>
     </div>
     <div id="basla">
       <Button label="BASLA"></Button>
     </div>
-
+    <div>
+      {{selectedBrand}}
+    </div>
   </div>
 </template>
 
-<script setup lang="ts">import { useQuery } from '@vue/apollo-composable';
+<script setup lang="ts">
+import { useQuery } from '@vue/apollo-composable';
 import gql from 'graphql-tag';
 import Dropdown from 'primevue/dropdown';
-import { computed } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import Navbar from './Navbar.vue';
 
 const ALL_BRANDS_QUERY = gql`
@@ -37,23 +40,8 @@ query getBrands{
 `;
 
 const { result } = useQuery(ALL_BRANDS_QUERY);
-
-const brands = computed(() => result.value?.brands ?? [])
-setTimeout(() => {
-  console.log(brands.value)
-}, 2500);
-// const brandsList: Array<any> = brands.value['items']
-// const brandsName: Array<String> = []
-// setTimeout(() => {
-
-// }, 2100);
-// brandsList.forEach(element => {
-//   brandsName.push(element['name'])
-// });
-// console.log(brandsName)
-// console.log(brands.value['items'])
-// console.log(brandsList)
-
+const brands = computed(() => result.value?.brands?.items ?? []);
+const selectedBrand = ref<string>();
 
 </script>
 
