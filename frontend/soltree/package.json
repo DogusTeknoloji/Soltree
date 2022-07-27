@@ -10,10 +10,15 @@
     "gen": "openapi-generator-cli generate -i http://localhost:5556/swagger/v1/swagger.json -g typescript-axios -o src/services/soltree-api --skip-validate-spec"
   },
   "dependencies": {
+    "@vue/apollo-composable": "^4.0.0-alpha.19",
+    "apollo-boost": "^0.4.9",
     "axios": "^0.27.2",
+    "graphql": "^15.8.0",
+    "pinia": "^2.0.16",
     "primeicons": "^5.0.0",
     "primevue": "^3.15.0",
-    "vue": "^3.2.37"
+    "vue": "^3.2.37",
+    "vue-apollo": "^3.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.0",

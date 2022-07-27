@@ -7,12 +7,12 @@ namespace Soltree.Api.Data.Etities
     {
         [Required]
         public string Name { get; set; }
-
+        [IsProjected(true)]
         [Required]
         public Guid BrandId { get; set; }
 
         public Brand? Brand { get; set; }
-
+        [IsProjected(true)]
         [Required]
         public Guid DeviceTypeId { get; set; }
 

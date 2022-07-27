@@ -1,8 +1,9 @@
-
 import Vue from 'vue'
 import PrimeVue from 'primevue/config';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
+import Dropdown from 'primevue/dropdown';
+import Menubar from 'primevue/menubar';
 
 import 'primevue/resources/themes/bootstrap4-light-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
@@ -13,5 +14,7 @@ export default {
         app.use(PrimeVue)
         app.component('Button', Button)
         app.component('InputText', InputText)
+        app.component('DropDown', Dropdown)
+        app.component('Menubar', Menubar)
     }
 }

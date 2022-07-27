@@ -1,47 +1,41 @@
 <template>
   <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+    <HomePage></HomePage>
+    <!-- <ul>
+      <li v-for="brand in brandsList" :key="brand.name">{{brand["name"]}}</li>
+    </ul>
+    <Dropdown :options="brandsList" option-label="brandNames" placeholder="Select a Brand"></Dropdown> -->
   </div>
-  <HelloWorld msg="Vite + Vue + TS" />
 
-  <Button label="Primary" @click="getWeatherForecast"></Button>
-  <Button label="Secondary" class="p-button-secondary"></Button>
-  <Button label="Success" class="p-button-success"></Button>
-  <Button label="Info" class="p-button-info" ></Button>
-  <Button label="Warning" class="p-button-warning"></Button>
-  <Button label="Help" class="p-button-help"></Button>
-  <Button label="Danger" class="p-button-danger"></Button>
+
 
 </template>
-
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import { WeatherForecastApi } from './services/soltree-api';
+import HomePage from './components/HomePage.vue';
 
-const weatherForecastApi = new WeatherForecastApi();
+// const ALL_BRANDS_QUERY = gql`
+// query getBrands{
+//     brands {
+//       items{
+//         name
+//       }
+//     }
+//   }
+// `;
 
-const getWeatherForecast = async () => {
-  const response =  await weatherForecastApi.getWeatherForecast();
-  console.log(response.data);
-};
+// const { result } = useQuery(ALL_BRANDS_QUERY);
 
+// const brands = computed(() =>  result.value?.brands ?? 'empty array')
+// const brandsList: Array<any> = brands.value['items']
+
+// watchEffect(() => {
+//   console.log(brandsList)
+// })
 </script>
 
+
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+ul {
+  list-style-type: none;
 }
 </style>
