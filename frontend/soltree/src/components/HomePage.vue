@@ -10,37 +10,36 @@
     </ul> -->
     <!-- <Dropdown :options="brandsList" option-label="brandNames" placeholder="Select a Brand"></Dropdown> -->
     <div id="brandDropdown">
-      <Dropdown v-model="selectedBrand" :options="brands" option-label="name" option-value="id" placeholder="Select a Brand"></Dropdown>
+      <Dropdown v-model="selectedBrand" :options="brands" option-label="name" option-value="id"
+        placeholder="Select a Brand"></Dropdown>
     </div>
     <div id="basla">
       <Button label="BASLA"></Button>
     </div>
     <div>
-      {{selectedBrand}}
+      {{ selectedBrand }}
+    </div>
+
+    <div>
+      {{result.fetching}}
+      
+      {{brands}}
+
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useQuery } from '@vue/apollo-composable';
-import gql from 'graphql-tag';
 import Dropdown from 'primevue/dropdown';
 import { computed, onMounted, ref } from 'vue';
 import Navbar from './Navbar.vue';
 
-const ALL_BRANDS_QUERY = gql`
-query getBrands{
-    brands {
-      items{
-        id
-        name
-      }
-    }
-  }
-`;
+import { useGetBrandsQuery } from '../graphql'
 
-const { result } = useQuery(ALL_BRANDS_QUERY);
-const brands = computed(() => result.value?.brands?.items ?? []);
+
+const result = useGetBrandsQuery();
+
+const brands = computed(() => result.data.value?.brands?.items ?? []);
 const selectedBrand = ref<string>();
 
 </script>

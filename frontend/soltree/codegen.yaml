@@ -1,0 +1,10 @@
+schema: ./src/graphql/schema.graphql
+documents: 
+  - './src/graphql/queries/*.graphql'
+  - './src/graphql/mutations/*.graphql'
+generates:
+  ./src/graphql/index.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-vue-urql

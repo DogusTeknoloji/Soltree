@@ -6,8 +6,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
     ports:
-      - "6000:80"
-      - "6001:443"
+      - '6000:80'
+      - '6001:443'
     depends_on:
       - db
     volumes:

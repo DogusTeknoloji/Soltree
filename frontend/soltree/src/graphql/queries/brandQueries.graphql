@@ -1,0 +1,8 @@
+query getBrands{
+  brands {
+    items{
+      id
+      name
+    }
+  }
+}
