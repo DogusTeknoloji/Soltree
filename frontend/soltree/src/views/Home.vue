@@ -3,47 +3,49 @@
     <div class="flex align-items-center justify-content-center" style="width: 50%;">
       <Card style="width: 100%; margin-bottom: 2rem">
         <template #content>
-          <Button label="Marka Seçimi" />
+          <div class="flex justify-content-around flex-wrap">
+            <Button label="Marka Seçimi" class="p-button-link flex flex-column" v-for="(item, index) in items"
+              :disabled="wizardStore.index != index">
+              <div>{{ index + 1 }}</div>
+              <div>{{ item.label }}</div>
+            </Button>
+          </div>
         </template>
       </Card>
     </div>
 
     <div class="flex align-items-center justify-content-center" style="width: 50%;">
-      <SelectBrand></SelectBrand>
+      <component :is="items[wizardStore.index].component" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, shallowRef, defineAsyncComponent } from 'vue';
 import { useRouter } from 'vue-router';
-import SelectBrand from '../components/SelectBrand.vue';
+import { useWizardStore } from "../store/wizardStore";
 
-const router = useRouter()
+const wizardStore = useWizardStore();
 
 const items = ref([
   {
     label: 'Marka Seçimi',
-    component: () => import('@/components/SelectBrand.vue')
+    component: shallowRef(defineAsyncComponent(() => import('@/components/WizardItemBrand.vue')))
   },
   {
-    label: 'Model Seçimi',
+    label: 'Cihaz Seçimi',
+    component: shallowRef(defineAsyncComponent(() => import('@/components/WizardItemDevice.vue')))
   },
   {
-    label: 'Sorun Seçimi',
+    label: 'Problem Seçimi',
+    component: shallowRef(defineAsyncComponent(() => import('@/components/WizardItemSymptom.vue')))
   },
   {
     label: 'Çözüm Önerileri',
+    component: shallowRef(defineAsyncComponent(() => import('@/components/WizardItemSolution.vue')))
   }
 ]);
 
-// const nextPage = (event: any) => {
-//   router.push(items.value[event.pageIndex + 1].to);
-// };
-
-// const prevPage = (event: any) => {
-//   router.push(items.value[event.pageIndex - 1].to);
-// };
 
 </script>
 

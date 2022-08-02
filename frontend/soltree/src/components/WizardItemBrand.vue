@@ -1,5 +1,5 @@
 <template>
-  <Card style="width: 100%">
+  <Card style="width: 100%" class="fadein animation-duration-300">
     <template #content>
       <div class="text-center">
         <h3>Hata çözümleme işlemine hoşgeldiniz</h3>
@@ -19,14 +19,15 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { useGetBrandsQuery } from '../graphql'
+import { useWizardStore } from '../store/wizardStore';
 
-const emit = defineEmits(['next-page'])
+const wizardStore = useWizardStore();
 
 const getBrandsQueryResult = useGetBrandsQuery();
 const brands = computed(() => getBrandsQueryResult.data.value?.brands?.items ?? []);
 const selectedBrand = ref<string>();
 
 const nextPage = () => {
-  emit('next-page', { selectedBrand: selectedBrand });
+  wizardStore.next();
 };
 </script>
