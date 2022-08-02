@@ -1,0 +1,11 @@
+import { useBrandStore } from '../store/brandStore';
+const store = useBrandStore();
+
+query modelbyBrandId {
+  models (where: {brandId:{eq: "$store.selectedModel"}})
+  {
+    items{
+      name
+    }
+  }
+}

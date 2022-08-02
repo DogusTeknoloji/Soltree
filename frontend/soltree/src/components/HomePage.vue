@@ -1,29 +1,23 @@
 <template>
-  <div id="home">
-    <!-- <img src=""></img> -->
-    <Navbar></Navbar>
 
+  <div id="home">
     <h3 id="title">Hata çözümleme işlemine hoşgeldiniz</h3>
     <h3 id="choice">Aşağıdan telefon markanızı seçiniz</h3>
-    <!-- <ul>
-      <li v-for="brand in brandsList" :key="brand.name">{{ brand['name'] }}</li>
-    </ul> -->
-    <!-- <Dropdown :options="brandsList" option-label="brandNames" placeholder="Select a Brand"></Dropdown> -->
     <div id="brandDropdown">
+
       <Dropdown v-model="selectedBrand" :options="brands" option-label="name" option-value="id"
-        placeholder="Select a Brand"></Dropdown>
+        placeholder="Select a Brand" filter="true" aria-required="true"></Dropdown>
     </div>
+    <Toast />
     <div id="basla">
-      <Button label="BASLA"></Button>
-    </div>
-    <div>
-      {{ selectedBrand }}
+      <router-link style="text-decoration: none" to="/solution">
+        <Button label="BASLA" @click="handler"></Button>
+      </router-link>
     </div>
 
     <div>
-      {{result.fetching}}
-      
-      {{brands}}
+
+
 
     </div>
   </div>
@@ -31,16 +25,35 @@
 
 <script setup lang="ts">
 import Dropdown from 'primevue/dropdown';
-import { computed, onMounted, ref } from 'vue';
-import Navbar from './Navbar.vue';
-
+import Toast from 'primevue/toast';
+import { computed, ref } from 'vue';
 import { useGetBrandsQuery } from '../graphql'
+import { useBrandStore } from '../store/brandStore.js'
+import { useToast } from "primevue/usetoast";
+
+
+const toast = useToast();
+const warnUser = () => {
+  toast.add({ severity: "warn", summary: "Marka Seçilmedi", detail: "Lütfen marka seçiniz", life: 3000 })
+}
+const handler = () => {
+  if (selectedBrand) {
+    warnUser();
+  }
+}
+
+
 
 
 const result = useGetBrandsQuery();
 
 const brands = computed(() => result.data.value?.brands?.items ?? []);
 const selectedBrand = ref<string>();
+const store = useBrandStore();
+store.selectedBrand = selectedBrand;
+
+
+
 
 </script>
 
@@ -74,5 +87,6 @@ ul {
 .p-button {
   margin-top: 20px;
   width: 120px;
+  text-decoration: none;
 }
 </style>

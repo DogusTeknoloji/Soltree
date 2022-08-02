@@ -1,0 +1,13 @@
+query getModels {
+  models {
+    items {
+      name
+      id
+      brandId
+      brand {
+        name
+        id
+      }
+    }
+  }
+}

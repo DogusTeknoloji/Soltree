@@ -486,6 +486,11 @@ export type GetBrandsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetBrandsQuery = { __typename?: 'Query', brands?: { __typename?: 'BrandCollectionSegment', items?: Array<{ __typename?: 'Brand', id: any, name: string }> | null } | null };
 
+export type GetModelsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetModelsQuery = { __typename?: 'Query', models?: { __typename?: 'ModelCollectionSegment', items?: Array<{ __typename?: 'Model', name: string, id: any, brandId: any, brand?: { __typename?: 'Brand', name: string, id: any } | null }> | null } | null };
+
 
 export const GetBrandsDocument = gql`
     query getBrands {
@@ -500,4 +505,23 @@ export const GetBrandsDocument = gql`
 
 export function useGetBrandsQuery(options: Omit<Urql.UseQueryArgs<never, GetBrandsQueryVariables>, 'query'> = {}) {
   return Urql.useQuery<GetBrandsQuery>({ query: GetBrandsDocument, ...options });
+};
+export const GetModelsDocument = gql`
+    query getModels {
+  models {
+    items {
+      name
+      id
+      brandId
+      brand {
+        name
+        id
+      }
+    }
+  }
+}
+    `;
+
+export function useGetModelsQuery(options: Omit<Urql.UseQueryArgs<never, GetModelsQueryVariables>, 'query'> = {}) {
+  return Urql.useQuery<GetModelsQuery>({ query: GetModelsDocument, ...options });
 };
