@@ -1,5 +1,5 @@
-query getBrands{
-  brands {
+query getBrands($skip: Int, $take: Int){
+  brands(skip: $skip, take: $take) {
     items{
       id
       name

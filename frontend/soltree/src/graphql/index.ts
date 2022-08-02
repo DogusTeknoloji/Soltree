@@ -481,7 +481,10 @@ export type SymptomUpdateRequestInput = {
   symptomCategoryId: Scalars['UUID'];
 };
 
-export type GetBrandsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetBrandsQueryVariables = Exact<{
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+}>;
 
 
 export type GetBrandsQuery = { __typename?: 'Query', brands?: { __typename?: 'BrandCollectionSegment', items?: Array<{ __typename?: 'Brand', id: any, name: string }> | null } | null };
@@ -493,8 +496,8 @@ export type GetModelsQuery = { __typename?: 'Query', models?: { __typename?: 'Mo
 
 
 export const GetBrandsDocument = gql`
-    query getBrands {
-  brands {
+    query getBrands($skip: Int, $take: Int) {
+  brands(skip: $skip, take: $take) {
     items {
       id
       name

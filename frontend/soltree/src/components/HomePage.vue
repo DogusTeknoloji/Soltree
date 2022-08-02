@@ -6,13 +6,13 @@
     <div id="brandDropdown">
 
       <Dropdown v-model="selectedBrand" :options="brands" option-label="name" option-value="id"
-        placeholder="Select a Brand" filter="true" aria-required="true"></Dropdown>
+        placeholder="Select a Brand" :filter="true" aria-required="true"></Dropdown>
     </div>
     <Toast />
     <div id="basla">
-      <router-link style="text-decoration: none" to="/solution">
+      <!-- <router-link style="text-decoration: none" to="/solution">
         <Button label="BASLA" @click="handler"></Button>
-      </router-link>
+      </router-link> -->
     </div>
 
     <div>
@@ -28,7 +28,7 @@ import Dropdown from 'primevue/dropdown';
 import Toast from 'primevue/toast';
 import { computed, ref } from 'vue';
 import { useGetBrandsQuery } from '../graphql'
-import { useBrandStore } from '../store/brandStore.js'
+import { useBrandStore } from '../store/brandStore'
 import { useToast } from "primevue/usetoast";
 
 
@@ -50,7 +50,7 @@ const result = useGetBrandsQuery();
 const brands = computed(() => result.data.value?.brands?.items ?? []);
 const selectedBrand = ref<string>();
 const store = useBrandStore();
-store.selectedBrand = selectedBrand;
+store.selectedBrand = selectedBrand.value;
 
 
 
