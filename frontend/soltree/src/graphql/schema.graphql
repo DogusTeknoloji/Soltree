@@ -24,6 +24,7 @@ type CollectionSegmentInfo {
 
 type DeviceType {
   name: String!
+  image: String
   id: UUID!
 }
 
@@ -173,21 +174,25 @@ input DeviceTypeFilterInput {
   and: [DeviceTypeFilterInput!]
   or: [DeviceTypeFilterInput!]
   name: StringOperationFilterInput
+  image: StringOperationFilterInput
   id: ComparableGuidOperationFilterInput
 }
 
 input DeviceTypeInsertRequestInput {
   name: String!
+  image: String!
 }
 
 input DeviceTypeSortInput {
   name: SortEnumType
+  image: SortEnumType
   id: SortEnumType
 }
 
 input DeviceTypeUpdateRequestInput {
   id: UUID!
   name: String!
+  image: String!
 }
 
 input ModelFilterInput {

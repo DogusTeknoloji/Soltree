@@ -1,13 +1,9 @@
-query getModels {
-  models {
+query getModelsByBrandId($brandId: UUID) {
+  models(where: { brandId: { eq: $brandId } }) {
     items {
       name
       id
       brandId
-      brand {
-        name
-        id
-      }
     }
   }
 }

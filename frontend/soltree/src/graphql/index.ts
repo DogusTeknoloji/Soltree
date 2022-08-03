@@ -92,6 +92,7 @@ export type ComparableNullableOfGuidOperationFilterInput = {
 export type DeviceType = {
   __typename?: 'DeviceType';
   id: Scalars['UUID'];
+  image?: Maybe<Scalars['String']>;
   name: Scalars['String'];
 };
 
@@ -105,21 +106,25 @@ export type DeviceTypeCollectionSegment = {
 export type DeviceTypeFilterInput = {
   and?: InputMaybe<Array<DeviceTypeFilterInput>>;
   id?: InputMaybe<ComparableGuidOperationFilterInput>;
+  image?: InputMaybe<StringOperationFilterInput>;
   name?: InputMaybe<StringOperationFilterInput>;
   or?: InputMaybe<Array<DeviceTypeFilterInput>>;
 };
 
 export type DeviceTypeInsertRequestInput = {
+  image: Scalars['String'];
   name: Scalars['String'];
 };
 
 export type DeviceTypeSortInput = {
   id?: InputMaybe<SortEnumType>;
+  image?: InputMaybe<SortEnumType>;
   name?: InputMaybe<SortEnumType>;
 };
 
 export type DeviceTypeUpdateRequestInput = {
   id: Scalars['UUID'];
+  image: Scalars['String'];
   name: Scalars['String'];
 };
 
@@ -489,10 +494,12 @@ export type GetBrandsQueryVariables = Exact<{
 
 export type GetBrandsQuery = { __typename?: 'Query', brands?: { __typename?: 'BrandCollectionSegment', items?: Array<{ __typename?: 'Brand', id: any, name: string }> | null } | null };
 
-export type GetModelsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetModelsByBrandIdQueryVariables = Exact<{
+  brandId?: InputMaybe<Scalars['UUID']>;
+}>;
 
 
-export type GetModelsQuery = { __typename?: 'Query', models?: { __typename?: 'ModelCollectionSegment', items?: Array<{ __typename?: 'Model', name: string, id: any, brandId: any, brand?: { __typename?: 'Brand', name: string, id: any } | null }> | null } | null };
+export type GetModelsByBrandIdQuery = { __typename?: 'Query', models?: { __typename?: 'ModelCollectionSegment', items?: Array<{ __typename?: 'Model', name: string, id: any, brandId: any }> | null } | null };
 
 
 export const GetBrandsDocument = gql`
@@ -509,22 +516,18 @@ export const GetBrandsDocument = gql`
 export function useGetBrandsQuery(options: Omit<Urql.UseQueryArgs<never, GetBrandsQueryVariables>, 'query'> = {}) {
   return Urql.useQuery<GetBrandsQuery>({ query: GetBrandsDocument, ...options });
 };
-export const GetModelsDocument = gql`
-    query getModels {
-  models {
+export const GetModelsByBrandIdDocument = gql`
+    query getModelsByBrandId($brandId: UUID) {
+  models(where: {brandId: {eq: $brandId}}) {
     items {
       name
       id
       brandId
-      brand {
-        name
-        id
-      }
     }
   }
 }
     `;
 
-export function useGetModelsQuery(options: Omit<Urql.UseQueryArgs<never, GetModelsQueryVariables>, 'query'> = {}) {
-  return Urql.useQuery<GetModelsQuery>({ query: GetModelsDocument, ...options });
+export function useGetModelsByBrandIdQuery(options: Omit<Urql.UseQueryArgs<never, GetModelsByBrandIdQueryVariables>, 'query'> = {}) {
+  return Urql.useQuery<GetModelsByBrandIdQuery>({ query: GetModelsByBrandIdDocument, ...options });
 };

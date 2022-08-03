@@ -13,7 +13,8 @@ namespace Soltree.Api.Graphql.Mutations
             var respone = new InsertResponse();
             var type = new DeviceType()
             {
-                Name = request.Name
+                Name = request.Name,
+                Image = request.Image
             };
 
             context.DeviceTypes.Add(type);
@@ -31,6 +32,7 @@ namespace Soltree.Api.Graphql.Mutations
             if (type != null)
             {
                 type.Name = request.Name;
+                type.Image = request.Image;
 
                 context.SaveChanges();
 

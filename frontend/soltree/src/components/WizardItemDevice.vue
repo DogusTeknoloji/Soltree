@@ -2,7 +2,8 @@
   <Card style="width: 100%" class="fadein animation-duration-300">
     <template #content>
       <div class="text-center">
-        selam
+        <Dropdown v-model="selectedModel" :options="models" placeholder="Select a Model" aria-required="true"
+          class="text-left"></Dropdown>
       </div>
     </template>
     <template #footer>
@@ -15,9 +16,18 @@
 </template>
 
 <script setup lang="ts">
+import { computed, ref } from 'vue';
+import { useGetModelsByBrandIdQuery } from '../graphql';
+import { useBrandStore } from '../store/brandStore';
 import { useWizardStore } from '../store/wizardStore';
 
 const wizardStore = useWizardStore();
+const brandStore = useBrandStore();
+
+const getModelsByBrandIdQueryResult = useGetModelsByBrandIdQuery({ variables: { brandId: brandStore.selectedBrand } });
+console.log(brandStore.selectedBrand)
+const models = computed(() => getModelsByBrandIdQueryResult.data.value?.models?.items ?? [])
+const selectedModel = ref<string>();
 
 const nextPage = () => {
   wizardStore.next();

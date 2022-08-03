@@ -19,15 +19,19 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { useGetBrandsQuery } from '../graphql'
+import { useBrandStore } from '../store/brandStore';
 import { useWizardStore } from '../store/wizardStore';
 
 const wizardStore = useWizardStore();
 
+const brandStore = useBrandStore();
 const getBrandsQueryResult = useGetBrandsQuery();
 const brands = computed(() => getBrandsQueryResult.data.value?.brands?.items ?? []);
-const selectedBrand = ref<string>();
+const selectedBrand = ref<string>(brandStore.selectedBrand!);
+
 
 const nextPage = () => {
+  brandStore.selectedBrand = selectedBrand.value;
   wizardStore.next();
 };
 </script>
