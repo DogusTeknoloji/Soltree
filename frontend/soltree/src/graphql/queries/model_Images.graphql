@@ -1,0 +1,9 @@
+query deviceTypeImage {
+  deviceTypes {
+    items {
+      id
+      name
+      image
+    }
+  }
+}

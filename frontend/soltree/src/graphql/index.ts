@@ -501,6 +501,11 @@ export type GetModelsByBrandIdQueryVariables = Exact<{
 
 export type GetModelsByBrandIdQuery = { __typename?: 'Query', models?: { __typename?: 'ModelCollectionSegment', items?: Array<{ __typename?: 'Model', name: string, id: any, brandId: any }> | null } | null };
 
+export type DeviceTypeImageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type DeviceTypeImageQuery = { __typename?: 'Query', deviceTypes?: { __typename?: 'DeviceTypeCollectionSegment', items?: Array<{ __typename?: 'DeviceType', id: any, name: string, image?: string | null }> | null } | null };
+
 
 export const GetBrandsDocument = gql`
     query getBrands($skip: Int, $take: Int) {
@@ -530,4 +535,19 @@ export const GetModelsByBrandIdDocument = gql`
 
 export function useGetModelsByBrandIdQuery(options: Omit<Urql.UseQueryArgs<never, GetModelsByBrandIdQueryVariables>, 'query'> = {}) {
   return Urql.useQuery<GetModelsByBrandIdQuery>({ query: GetModelsByBrandIdDocument, ...options });
+};
+export const DeviceTypeImageDocument = gql`
+    query deviceTypeImage {
+  deviceTypes {
+    items {
+      id
+      name
+      image
+    }
+  }
+}
+    `;
+
+export function useDeviceTypeImageQuery(options: Omit<Urql.UseQueryArgs<never, DeviceTypeImageQueryVariables>, 'query'> = {}) {
+  return Urql.useQuery<DeviceTypeImageQuery>({ query: DeviceTypeImageDocument, ...options });
 };

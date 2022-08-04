@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, onActivated, ref } from 'vue';
 import { useGetBrandsQuery } from '../graphql'
 import { useBrandStore } from '../store/brandStore';
 import { useWizardStore } from '../store/wizardStore';
@@ -25,13 +25,19 @@ import { useWizardStore } from '../store/wizardStore';
 const wizardStore = useWizardStore();
 
 const brandStore = useBrandStore();
+
+onActivated(() => {
+  useGetBrandsQuery();
+})
+
 const getBrandsQueryResult = useGetBrandsQuery();
 const brands = computed(() => getBrandsQueryResult.data.value?.brands?.items ?? []);
 const selectedBrand = ref<string>(brandStore.selectedBrand!);
 
-
 const nextPage = () => {
   brandStore.selectedBrand = selectedBrand.value;
-  wizardStore.next();
+  if (brandStore.selectedBrand != null) {
+    wizardStore.next();
+  }
 };
 </script>
