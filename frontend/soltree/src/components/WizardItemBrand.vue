@@ -32,7 +32,7 @@ onActivated(() => {
 
 const getBrandsQueryResult = useGetBrandsQuery();
 const brands = computed(() => getBrandsQueryResult.data.value?.brands?.items ?? []);
-const selectedBrand = ref<string>(brandStore.selectedBrand!);
+const selectedBrand = ref<string>();
 
 const nextPage = () => {
   brandStore.selectedBrand = selectedBrand.value;

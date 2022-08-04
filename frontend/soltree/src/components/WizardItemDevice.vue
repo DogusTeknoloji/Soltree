@@ -2,10 +2,15 @@
   <Card style="width: 100%" class="fadein animation-duration-300">
     <template #content>
       <div class="text-center">
-        <div>
+        <!-- <div>
           <img :src="phoneImage" class="base64img" alt="Telefon" style="width: 150px; height: 120px;" />
           <img src="" class="base64img" alt="Tablet" />
           <img src="" class="base64img" alt="Giyilebilir" />
+        </div> -->
+
+
+        <div v-for="deviceType in deviceTypes">
+          <img :src="deviceType.image!" :alt="deviceType.name" />
         </div>
         <Dropdown v-model="selectedModel" :options="models" option-label="name" option-value="id"
           placeholder="Select a Model" aria-required="true" class="text-left"></Dropdown>
@@ -34,12 +39,8 @@ const models = computed(() => getModelsByBrandIdQueryResult.data.value?.models?.
 const selectedModel = ref<string>();
 
 const getDeviceTypeImageQueryResult = useDeviceTypeImageQuery();
-const images = computed(() => getDeviceTypeImageQueryResult.data.value?.deviceTypes?.items ?? [])
+const deviceTypes = computed(() => getDeviceTypeImageQueryResult.data.value?.deviceTypes?.items ?? [])
 
-const phoneImage: string = images.value[0].image!
-
-
-console.log(phoneImage)
 const nextPage = () => {
   wizardStore.next();
 };

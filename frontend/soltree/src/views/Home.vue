@@ -15,7 +15,9 @@
     </div>
 
     <div class="flex align-items-center justify-content-center" style="width: 50%;">
-      <component :is="items[wizardStore.index].component" />
+      <KeepAlive>
+        <component :is="items[wizardStore.index].component" />
+      </KeepAlive>
     </div>
   </div>
 </template>
