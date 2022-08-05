@@ -2,10 +2,6 @@
   <Card style="width: 100%" class="fadein animation-duration-300">
     <template #content>
       <div class="text-center">
-
-        <!-- <div v-for="deviceType in deviceTypes">
-          <img :src="deviceType.image!" :alt="deviceType.name" style="height: 120px; width: 150px;" />
-        </div> -->
         <SelectButton :options="deviceTypes" dataKey="value" option-value="id" @change="displayHandler"
           style="margin-bottom: 20px;">
           <template #option="slotProps">
@@ -14,20 +10,9 @@
             </div>
           </template>
         </SelectButton>
-        <div v-if="brandStore.selectedDeviceType === 'type-2'">
-          <Dropdown v-model="selectedModel" :options="models" option-label="name" option-value="id"
-            placeholder="Select a Model" aria-required="true" class="text-left"></Dropdown>
-        </div>
-        <div v-else-if="brandStore.selectedDeviceType === 'Tablet'">
-          <Dropdown v-model="selectedModel" :options="models" option-label="name" option-value="id"
-            placeholder="Select a Model" aria-required="true" class="text-left"></Dropdown>
 
-        </div>
-        <div v-else-if="brandStore.selectedDeviceType === 'Giyilebilir'">
-          <Dropdown v-model="selectedModel" :options="models" option-label="name" option-value="id"
-            placeholder="Select a Model" aria-required="true" class="text-left"></Dropdown>
-        </div>
-
+        <Dropdown v-if="models.length > 0" v-model="selectedModel" :options="models" option-label="name" option-value="id"
+          placeholder="Select a Model" aria-required="true" class="text-left"></Dropdown>
       </div>
     </template>
     <template #footer>
@@ -48,23 +33,22 @@ import { useWizardStore } from '../store/wizardStore';
 const wizardStore = useWizardStore();
 const brandStore = useBrandStore();
 
+const selectedDeviceType = ref<string>();
 
-let models = computed(() => getModelsByBrandIdQueryResult.data.value?.models?.items ?? [])
+const getModelsByBrandIdQueryResult = useGetModelsByBrandandDeviceQuery({
+  pause: true,
+  variables: { brandId: brandStore.selectedBrand, deviceTypeId: selectedDeviceType }
+});
+
+const models = computed(() => getModelsByBrandIdQueryResult.data.value?.models?.items ?? [])
 const selectedModel = ref<string>();
-
 const getDeviceTypeImageQueryResult = useDeviceTypeImageQuery();
 const deviceTypes = computed(() => getDeviceTypeImageQueryResult.data.value?.deviceTypes?.items ?? [])
-console.log(deviceTypes)
-let selectedDeviceType = ref<string>();
-console.log(selectedDeviceType)
 
 const displayHandler = (e: any) => {
-  brandStore.selectedDeviceType = e.value;
-  let getModelsByBrandIdQueryResult = useGetModelsByBrandandDeviceQuery({ variables: { brandId: brandStore.selectedBrand, deviceTypeId: brandStore.selectedDeviceType } });
-  console.log(brandStore.selectedDeviceType)
+  selectedDeviceType.value = e.value;
+  getModelsByBrandIdQueryResult.executeQuery()
 }
-
-
 
 const nextPage = () => {
   wizardStore.next();
