@@ -5,6 +5,7 @@ export const useBrandStore = defineStore("brandStore", {
     return {
       selectedBrand: null as string | undefined | null,
       selectedModel: null,
+      selectedDeviceType: null as string | undefined | null,
       toast: false,
     };
   },

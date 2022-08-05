@@ -494,12 +494,13 @@ export type GetBrandsQueryVariables = Exact<{
 
 export type GetBrandsQuery = { __typename?: 'Query', brands?: { __typename?: 'BrandCollectionSegment', items?: Array<{ __typename?: 'Brand', id: any, name: string }> | null } | null };
 
-export type GetModelsByBrandIdQueryVariables = Exact<{
+export type GetModelsByBrandandDeviceQueryVariables = Exact<{
   brandId?: InputMaybe<Scalars['UUID']>;
+  deviceTypeId?: InputMaybe<Scalars['UUID']>;
 }>;
 
 
-export type GetModelsByBrandIdQuery = { __typename?: 'Query', models?: { __typename?: 'ModelCollectionSegment', items?: Array<{ __typename?: 'Model', name: string, id: any, brandId: any }> | null } | null };
+export type GetModelsByBrandandDeviceQuery = { __typename?: 'Query', models?: { __typename?: 'ModelCollectionSegment', items?: Array<{ __typename?: 'Model', name: string, id: any }> | null } | null };
 
 export type DeviceTypeImageQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -521,20 +522,19 @@ export const GetBrandsDocument = gql`
 export function useGetBrandsQuery(options: Omit<Urql.UseQueryArgs<never, GetBrandsQueryVariables>, 'query'> = {}) {
   return Urql.useQuery<GetBrandsQuery>({ query: GetBrandsDocument, ...options });
 };
-export const GetModelsByBrandIdDocument = gql`
-    query getModelsByBrandId($brandId: UUID) {
-  models(where: {brandId: {eq: $brandId}}) {
+export const GetModelsByBrandandDeviceDocument = gql`
+    query getModelsByBrandandDevice($brandId: UUID, $deviceTypeId: UUID) {
+  models(where: {brandId: {eq: $brandId}, deviceTypeId: {eq: $deviceTypeId}}) {
     items {
       name
       id
-      brandId
     }
   }
 }
     `;
 
-export function useGetModelsByBrandIdQuery(options: Omit<Urql.UseQueryArgs<never, GetModelsByBrandIdQueryVariables>, 'query'> = {}) {
-  return Urql.useQuery<GetModelsByBrandIdQuery>({ query: GetModelsByBrandIdDocument, ...options });
+export function useGetModelsByBrandandDeviceQuery(options: Omit<Urql.UseQueryArgs<never, GetModelsByBrandandDeviceQueryVariables>, 'query'> = {}) {
+  return Urql.useQuery<GetModelsByBrandandDeviceQuery>({ query: GetModelsByBrandandDeviceDocument, ...options });
 };
 export const DeviceTypeImageDocument = gql`
     query deviceTypeImage {

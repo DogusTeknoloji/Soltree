@@ -7,6 +7,7 @@ import Menubar from 'primevue/menubar';
 import Toast from 'primevue/toast';
 import Steps from 'primevue/steps';
 import Card from 'primevue/card';
+import SelectButton from 'primevue/selectbutton';
 
 import 'primevue/resources/themes/bootstrap4-light-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
@@ -23,5 +24,6 @@ export default {
         app.component('Toast', Toast)
         app.component('Steps', Steps)
         app.component('Card', Card)
+        app.component('SelectButton', SelectButton)
     }
 }

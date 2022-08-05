@@ -1,9 +1,10 @@
-query getModelsByBrandId($brandId: UUID) {
-  models(where: { brandId: { eq: $brandId } }) {
+query getModelsByBrandandDevice($brandId: UUID, $deviceTypeId: UUID) {
+  models(
+    where: { brandId: { eq: $brandId }, deviceTypeId: { eq: $deviceTypeId } }
+  ) {
     items {
       name
       id
-      brandId
     }
   }
 }

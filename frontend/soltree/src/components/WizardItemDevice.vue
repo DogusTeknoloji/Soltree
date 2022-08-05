@@ -2,22 +2,36 @@
   <Card style="width: 100%" class="fadein animation-duration-300">
     <template #content>
       <div class="text-center">
-        <!-- <div>
-          <img :src="phoneImage" class="base64img" alt="Telefon" style="width: 150px; height: 120px;" />
-          <img src="" class="base64img" alt="Tablet" />
-          <img src="" class="base64img" alt="Giyilebilir" />
+
+        <!-- <div v-for="deviceType in deviceTypes">
+          <img :src="deviceType.image!" :alt="deviceType.name" style="height: 120px; width: 150px;" />
         </div> -->
-
-
-        <div v-for="deviceType in deviceTypes">
-          <img :src="deviceType.image!" :alt="deviceType.name" />
+        <SelectButton :options="deviceTypes" dataKey="value" option-value="id" @change="displayHandler"
+          style="margin-bottom: 20px;">
+          <template #option="slotProps">
+            <div class="device-option">
+              <img :alt="slotProps.option.name" :src="slotProps.option.image" style="width: 150px; height:130px" />
+            </div>
+          </template>
+        </SelectButton>
+        <div v-if="brandStore.selectedDeviceType === 'type-2'">
+          <Dropdown v-model="selectedModel" :options="models" option-label="name" option-value="id"
+            placeholder="Select a Model" aria-required="true" class="text-left"></Dropdown>
         </div>
-        <Dropdown v-model="selectedModel" :options="models" option-label="name" option-value="id"
-          placeholder="Select a Model" aria-required="true" class="text-left"></Dropdown>
+        <div v-else-if="brandStore.selectedDeviceType === 'Tablet'">
+          <Dropdown v-model="selectedModel" :options="models" option-label="name" option-value="id"
+            placeholder="Select a Model" aria-required="true" class="text-left"></Dropdown>
+
+        </div>
+        <div v-else-if="brandStore.selectedDeviceType === 'Giyilebilir'">
+          <Dropdown v-model="selectedModel" :options="models" option-label="name" option-value="id"
+            placeholder="Select a Model" aria-required="true" class="text-left"></Dropdown>
+        </div>
+
       </div>
     </template>
     <template #footer>
-      <div class="text-center">
+      <div class="flex justify-content-between text-center">
         <Button label="Geri" icon="pi pi-angle-left" iconPos="right" @click="prevPage()"></Button>
         <Button label="Devam" icon="pi pi-angle-right" iconPos="right" @click="nextPage()"></Button>
       </div>
@@ -26,20 +40,31 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-import { useGetModelsByBrandIdQuery, useDeviceTypeImageQuery } from '../graphql';
+import { computed, onActivated, ref } from 'vue';
+import { useGetModelsByBrandandDeviceQuery, useDeviceTypeImageQuery } from '../graphql';
 import { useBrandStore } from '../store/brandStore';
 import { useWizardStore } from '../store/wizardStore';
 
 const wizardStore = useWizardStore();
 const brandStore = useBrandStore();
 
-const getModelsByBrandIdQueryResult = useGetModelsByBrandIdQuery({ variables: { brandId: brandStore.selectedBrand } });
-const models = computed(() => getModelsByBrandIdQueryResult.data.value?.models?.items ?? [])
+
+let models = computed(() => getModelsByBrandIdQueryResult.data.value?.models?.items ?? [])
 const selectedModel = ref<string>();
 
 const getDeviceTypeImageQueryResult = useDeviceTypeImageQuery();
 const deviceTypes = computed(() => getDeviceTypeImageQueryResult.data.value?.deviceTypes?.items ?? [])
+console.log(deviceTypes)
+let selectedDeviceType = ref<string>();
+console.log(selectedDeviceType)
+
+const displayHandler = (e: any) => {
+  brandStore.selectedDeviceType = e.value;
+  let getModelsByBrandIdQueryResult = useGetModelsByBrandandDeviceQuery({ variables: { brandId: brandStore.selectedBrand, deviceTypeId: brandStore.selectedDeviceType } });
+  console.log(brandStore.selectedDeviceType)
+}
+
+
 
 const nextPage = () => {
   wizardStore.next();
@@ -50,3 +75,9 @@ const prevPage = () => {
 };
 
 </script>
+
+<style>
+p-selectbutton p-buttonset p-component {
+  margin-bottom: 10px !important;
+}
+</style>
