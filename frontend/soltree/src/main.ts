@@ -14,6 +14,7 @@ app.use(router)
 
 app.use(urql, {
   url: 'https://localhost:6001/graphql',
+  requestPolicy: 'network-only'
 });
 
 app.mount('#app');

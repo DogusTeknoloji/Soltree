@@ -13,7 +13,8 @@ namespace Soltree.Api.Graphql.Mutations
             var respone = new InsertResponse();
             var symptomcategory = new SymptomCategory()
             {
-                Name = request.Name
+                Name = request.Name,
+                ModelId = request.ModelId
             };
 
             context.SymptomCategories.Add(symptomcategory);
@@ -31,6 +32,7 @@ namespace Soltree.Api.Graphql.Mutations
             if (symptomcategory != null)
             {
                 symptomcategory.Name = request.Name;
+                symptomcategory.ModelId = request.ModelId;
 
                 context.SaveChanges();
 
