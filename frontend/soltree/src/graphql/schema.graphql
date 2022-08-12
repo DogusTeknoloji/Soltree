@@ -104,6 +104,8 @@ type Symptom {
 
 type SymptomCategory {
   name: String!
+  modelId: UUID!
+  model: Model
   id: UUID!
 }
 
@@ -270,21 +272,27 @@ input SymptomCategoryFilterInput {
   and: [SymptomCategoryFilterInput!]
   or: [SymptomCategoryFilterInput!]
   name: StringOperationFilterInput
+  modelId: ComparableNullableOfGuidOperationFilterInput
+  model: ModelFilterInput
   id: ComparableGuidOperationFilterInput
 }
 
 input SymptomCategoryInsertRequestInput {
   name: String!
+  modelId: UUID!
 }
 
 input SymptomCategorySortInput {
   name: SortEnumType
+  modelId: SortEnumType
+  model: ModelSortInput
   id: SortEnumType
 }
 
 input SymptomCategoryUpdateRequestInput {
   id: UUID!
   name: String!
+  modelId: UUID!
 }
 
 input SymptomFilterInput {

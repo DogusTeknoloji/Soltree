@@ -1,0 +1,10 @@
+query getSymptombyCategory($symptomCategoryId: UUID) {
+  symptoms(
+    where: { symptomCategoryId: { eq: $symptomCategoryId } }
+  ) {
+    items {
+      name
+      id
+    }
+  }
+}

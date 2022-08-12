@@ -421,6 +421,8 @@ export type Symptom = {
 export type SymptomCategory = {
   __typename?: 'SymptomCategory';
   id: Scalars['UUID'];
+  model?: Maybe<Model>;
+  modelId: Scalars['UUID'];
   name: Scalars['String'];
 };
 
@@ -434,21 +436,27 @@ export type SymptomCategoryCollectionSegment = {
 export type SymptomCategoryFilterInput = {
   and?: InputMaybe<Array<SymptomCategoryFilterInput>>;
   id?: InputMaybe<ComparableGuidOperationFilterInput>;
+  model?: InputMaybe<ModelFilterInput>;
+  modelId?: InputMaybe<ComparableNullableOfGuidOperationFilterInput>;
   name?: InputMaybe<StringOperationFilterInput>;
   or?: InputMaybe<Array<SymptomCategoryFilterInput>>;
 };
 
 export type SymptomCategoryInsertRequestInput = {
+  modelId: Scalars['UUID'];
   name: Scalars['String'];
 };
 
 export type SymptomCategorySortInput = {
   id?: InputMaybe<SortEnumType>;
+  model?: InputMaybe<ModelSortInput>;
+  modelId?: InputMaybe<SortEnumType>;
   name?: InputMaybe<SortEnumType>;
 };
 
 export type SymptomCategoryUpdateRequestInput = {
   id: Scalars['UUID'];
+  modelId: Scalars['UUID'];
   name: Scalars['String'];
 };
 
@@ -507,6 +515,20 @@ export type DeviceTypeImageQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type DeviceTypeImageQuery = { __typename?: 'Query', deviceTypes?: { __typename?: 'DeviceTypeCollectionSegment', items?: Array<{ __typename?: 'DeviceType', id: any, name: string, image?: string | null }> | null } | null };
 
+export type GetSymptomCategorysbyModelQueryVariables = Exact<{
+  modelId?: InputMaybe<Scalars['UUID']>;
+}>;
+
+
+export type GetSymptomCategorysbyModelQuery = { __typename?: 'Query', symptomCategorys?: { __typename?: 'SymptomCategoryCollectionSegment', items?: Array<{ __typename?: 'SymptomCategory', name: string, id: any }> | null } | null };
+
+export type GetSymptombyCategoryQueryVariables = Exact<{
+  symptomCategoryId?: InputMaybe<Scalars['UUID']>;
+}>;
+
+
+export type GetSymptombyCategoryQuery = { __typename?: 'Query', symptoms?: { __typename?: 'SymptomCollectionSegment', items?: Array<{ __typename?: 'Symptom', name: string, id: any }> | null } | null };
+
 
 export const GetBrandsDocument = gql`
     query getBrands($skip: Int, $take: Int) {
@@ -550,4 +572,32 @@ export const DeviceTypeImageDocument = gql`
 
 export function useDeviceTypeImageQuery(options: Omit<Urql.UseQueryArgs<never, DeviceTypeImageQueryVariables>, 'query'> = {}) {
   return Urql.useQuery<DeviceTypeImageQuery>({ query: DeviceTypeImageDocument, ...options });
+};
+export const GetSymptomCategorysbyModelDocument = gql`
+    query getSymptomCategorysbyModel($modelId: UUID) {
+  symptomCategorys(where: {modelId: {eq: $modelId}}) {
+    items {
+      name
+      id
+    }
+  }
+}
+    `;
+
+export function useGetSymptomCategorysbyModelQuery(options: Omit<Urql.UseQueryArgs<never, GetSymptomCategorysbyModelQueryVariables>, 'query'> = {}) {
+  return Urql.useQuery<GetSymptomCategorysbyModelQuery>({ query: GetSymptomCategorysbyModelDocument, ...options });
+};
+export const GetSymptombyCategoryDocument = gql`
+    query getSymptombyCategory($symptomCategoryId: UUID) {
+  symptoms(where: {symptomCategoryId: {eq: $symptomCategoryId}}) {
+    items {
+      name
+      id
+    }
+  }
+}
+    `;
+
+export function useGetSymptombyCategoryQuery(options: Omit<Urql.UseQueryArgs<never, GetSymptombyCategoryQueryVariables>, 'query'> = {}) {
+  return Urql.useQuery<GetSymptombyCategoryQuery>({ query: GetSymptombyCategoryDocument, ...options });
 };

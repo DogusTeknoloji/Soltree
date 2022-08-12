@@ -1,0 +1,10 @@
+query getSymptomCategorybyModel($modelId: UUID) {
+  symptomCategorys(
+    where: { modelId: { eq: $modelId } }
+  ) {
+    items {
+      name
+      id
+    }
+  }
+}

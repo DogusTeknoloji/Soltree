@@ -64,7 +64,11 @@ onActivated(() => {
 });
 
 const nextPage = () => {
-  wizardStore.next();
+  brandStore.selectedDeviceType = selectedDeviceType.value;
+  brandStore.selectedModel = selectedModel.value;
+  if (brandStore.selectedModel != null) {
+    wizardStore.next();
+  }
 };
 
 const prevPage = () => {
