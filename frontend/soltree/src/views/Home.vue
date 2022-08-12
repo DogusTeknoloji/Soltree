@@ -4,6 +4,7 @@
       <Card style="width: 100%; margin-bottom: 2rem">
         <template #content>
           <div class="flex justify-content-around flex-wrap">
+
             <Button label="Marka Seçimi" class="p-button-link flex flex-column" v-for="(item, index) in items"
               :disabled="wizardStore.index != index">
               <div>{{ index + 1 }}</div>
@@ -12,6 +13,10 @@
           </div>
         </template>
       </Card>
+    </div>
+
+    <div>
+      <CircleMenu />
     </div>
 
     <div class="flex align-items-center justify-content-center" style="width: 50%;">
@@ -26,6 +31,7 @@
 import { ref, shallowRef, defineAsyncComponent } from 'vue';
 import { useRouter } from 'vue-router';
 import { useWizardStore } from "../store/wizardStore";
+import CircleMenu from '../components/CircleMenu.vue';
 
 const wizardStore = useWizardStore();
 
