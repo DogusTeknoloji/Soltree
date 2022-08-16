@@ -22,18 +22,11 @@ interface Item {
   Selected?: boolean
   Rotate?: number
 }
+const props = defineProps({items: Array<Item>, multipleSelect: Boolean});
 const isOpen = ref<boolean>();
-const isMultipleSelect = ref<boolean>(true);
+const isMultipleSelect = ref<boolean>(props.multipleSelect);
 
-const items = ref<Item[]>([
-  { Label: "Güç ve Şarj", Rotate: -360 },
-  { Label: "Görüntü ve Ekran", Rotate: -360 },
-  { Label: "Ses ve Müzik", Rotate: -360 },
-  { Label: "Şebeke ve Sinyal", Rotate: -360 },
-  { Label: "Fotoğraf Video Çekimi", Rotate: -360 },
-  { Label: "Hafıza ve Uygulamalar", Rotate: -360 },
-  { Label: "Diğerleri", Rotate: -360 },
-]);
+const items = ref(props.items ?? []);
 
 setTimeout(() => {
   items.value.forEach((item: Item, index: number) => {
