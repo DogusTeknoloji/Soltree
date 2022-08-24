@@ -2,6 +2,8 @@
   <Card style="width: 100%" class="fadein animation-duration-300">
     <template #content>
       <div class="text-center">
+        
+        <h2>Lütfen cihaz türünüzü seçiniz</h2>
         <SelectButton v-model="selectedDeviceType" :options="deviceTypes" dataKey="value" option-value="id"
           style="margin-bottom: 20px;">
           <template #option="slotProps">
@@ -12,7 +14,7 @@
         </SelectButton>
 
         <Dropdown v-if="models.length > 0" v-model="selectedModel" :options="models" option-label="name"
-          option-value="id" placeholder="Select a Model" aria-required="true" class="text-left"></Dropdown>
+          option-value="id" placeholder="Model seçiniz" aria-required="true" class="text-left"></Dropdown>
       </div>
     </template>
     <template #footer>
@@ -80,5 +82,9 @@ const prevPage = () => {
 <style>
 p-selectbutton p-buttonset p-component {
   margin-bottom: 10px !important;
+}
+
+h2 {
+  margin-top: -10px;
 }
 </style>

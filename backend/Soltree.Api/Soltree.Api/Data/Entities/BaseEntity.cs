@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Soltree.Api.Data.Etities
+namespace Soltree.Api.Data.Entities
 {
     public class BaseEntity
     {

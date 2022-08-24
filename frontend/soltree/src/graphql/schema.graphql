@@ -86,6 +86,8 @@ type Query {
 type Solution {
   title: String!
   description: String!
+  symptomId: UUID!
+  symptom: Symptom
   id: UUID!
 }
 
@@ -233,17 +235,22 @@ input SolutionFilterInput {
   or: [SolutionFilterInput!]
   title: StringOperationFilterInput
   description: StringOperationFilterInput
+  symptomId: ComparableNullableOfGuidOperationFilterInput
+  symptom: SymptomFilterInput
   id: ComparableGuidOperationFilterInput
 }
 
 input SolutionInsertRequestInput {
   title: String!
   description: String!
+  symptomId: UUID!
 }
 
 input SolutionSortInput {
   title: SortEnumType
   description: SortEnumType
+  symptomId: SortEnumType
+  symptom: SymptomSortInput
   id: SortEnumType
 }
 
@@ -251,6 +258,7 @@ input SolutionUpdateRequestInput {
   id: UUID!
   title: String!
   description: String!
+  symptomId: UUID!
 }
 
 input StringOperationFilterInput {

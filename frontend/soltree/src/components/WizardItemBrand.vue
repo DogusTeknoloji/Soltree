@@ -5,7 +5,7 @@
         <h3>Hata çözümleme işlemine hoşgeldiniz</h3>
         <h3>Aşağıdan cihaz markanızı seçiniz</h3>
         <Dropdown v-model="selectedBrand" :options="brands" option-label="name" option-value="id"
-          placeholder="Select a Brand" :filter="true" aria-required="true" class="text-left"></Dropdown>
+          placeholder="Marka Seçiniz" :filter="true" aria-required="true" class="text-left"></Dropdown>
       </div>
     </template>
     <template #footer>
@@ -26,13 +26,16 @@ const wizardStore = useWizardStore();
 
 const brandStore = useBrandStore();
 
-onActivated(() => {
-  useGetBrandsQuery();
-})
+
 
 const getBrandsQueryResult = useGetBrandsQuery();
 const brands = computed(() => getBrandsQueryResult.data.value?.brands?.items ?? []);
-const selectedBrand = ref<string>();
+const selectedBrand = ref<string | null>();
+
+onActivated(() => {
+  getBrandsQueryResult.executeQuery();
+  selectedBrand.value = null
+})
 
 const nextPage = () => {
   brandStore.selectedBrand = selectedBrand.value;

@@ -1,7 +1,7 @@
 ﻿using Soltree.Api.Data;
 using Soltree.Api.Data.Dtos;
 using Soltree.Api.Data.Dtos.SymptomCategory;
-using Soltree.Api.Data.Etities;
+using Soltree.Api.Data.Entities;
 
 namespace Soltree.Api.Graphql.Mutations
 {
@@ -10,7 +10,7 @@ namespace Soltree.Api.Graphql.Mutations
     {
         public InsertResponse InsertSymptomCategory(SymptomCategoryInsertRequest request, [Service] AppDbContext context)
         {
-            var respone = new InsertResponse();
+            var response = new InsertResponse();
             var symptomcategory = new SymptomCategory()
             {
                 Name = request.Name,
@@ -20,9 +20,9 @@ namespace Soltree.Api.Graphql.Mutations
             context.SymptomCategories.Add(symptomcategory);
             context.SaveChanges();
 
-            respone.Id = symptomcategory.Id;
+            response.Id = symptomcategory.Id;
 
-            return respone;
+            return response;
         }
 
         public bool UpdateSymptomCategory(SymptomCategoryUpdateRequest request, [Service] AppDbContext context)

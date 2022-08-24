@@ -7,10 +7,10 @@
         <span>Model: {{ brandStore.selectedModel }}</span><br></div>-->
         <h3>Yaşadığınız problemin kategorisini seçiniz.</h3>
         <Dropdown v-model="selectedSymptomCategory" :options="symptomCategories" option-label="name"
-        option-value="id" placeholder="Select a Symptom category" aria-required="true" class="text-left"></Dropdown>
+        option-value="id" placeholder="Sorun kategorisi seçiniz" aria-required="true" class="text-left"></Dropdown>
         <h3 v-if="symptoms.length > 0">Yaşadığınız problemi seçiniz.</h3>
         <Dropdown v-if="symptoms.length > 0" v-model="selectedSymptom" :options="symptoms" option-label="name" 
-        option-value="id" placeholder="Select a Symptom" aria-required="true" class="text-left"></Dropdown>
+        option-value="id" placeholder="Sorun seçiniz" aria-required="true" class="text-left"></Dropdown>
       </div>
     </template>
     <template #footer>
@@ -26,11 +26,9 @@
 import { graphql } from 'graphql';
 import { useWizardStore } from '../store/wizardStore';
 import { useBrandStore } from '../store/brandStore';
-import { useGetSymptomCategorysbyModelQuery, useGetSymptombyCategoryQuery } from '../graphql';
+import { useGetSymptomCategorybyModelQuery, useGetSymptombyCategoryQuery } from '../graphql';
 import { computed, onActivated, ref } from 'vue';
 import { storeToRefs } from 'pinia';
-import CircleMenu from './CircleMenu.vue';
-
 
 
 const wizardStore = useWizardStore();
@@ -40,7 +38,7 @@ const { selectedModel } = storeToRefs(brandStore);
 
 const selectedSymptomCategory = ref<string | null>();
 
-const getSymptomCategoryResult = useGetSymptomCategorysbyModelQuery({
+const getSymptomCategoryResult = useGetSymptomCategorybyModelQuery({
   pause: true,
   variables: { modelId: selectedModel }
 });

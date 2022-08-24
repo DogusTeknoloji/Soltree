@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Soltree.Api.Data.Etities
+namespace Soltree.Api.Data.Entities
 {
     public class Model : BaseEntity
     {

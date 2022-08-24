@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Soltree.Api.Data.Etities
+namespace Soltree.Api.Data.Entities
 {
     public class Solution : BaseEntity
     {
@@ -9,5 +9,10 @@ namespace Soltree.Api.Data.Etities
 
         [Required]
         public string? Description { get; set; }
+
+        [Required]
+        public Guid? SymptomId { get; set; }
+
+        public Symptom? Symptom { get; set; }
     }
 }

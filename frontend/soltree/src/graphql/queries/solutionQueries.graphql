@@ -1,0 +1,11 @@
+query getSolutionbySymptomId($symptomId: UUID) {
+    solutions(
+        where: { symptomId: { eq: $symptomId } }
+    ) {
+        items {
+            id
+            title
+            description
+        }
+    }
+}

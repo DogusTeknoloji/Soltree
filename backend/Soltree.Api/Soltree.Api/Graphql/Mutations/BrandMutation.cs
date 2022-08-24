@@ -1,7 +1,7 @@
 ﻿using Soltree.Api.Data;
 using Soltree.Api.Data.Dtos;
 using Soltree.Api.Data.Dtos.Brand;
-using Soltree.Api.Data.Etities;
+using Soltree.Api.Data.Entities;
 
 namespace Soltree.Api.Graphql.Mutations
 {
@@ -10,7 +10,7 @@ namespace Soltree.Api.Graphql.Mutations
     {
         public InsertResponse InsertBrand(BrandInsertRequest request, [Service] AppDbContext context)
         {
-            var respone = new InsertResponse();
+            var response = new InsertResponse();
             var brand = new Brand()
             {
                 Name = request.Name
@@ -19,9 +19,9 @@ namespace Soltree.Api.Graphql.Mutations
             context.Brands.Add(brand);
             context.SaveChanges();
 
-            respone.Id = brand.Id;
+            response.Id = brand.Id;
 
-            return respone;
+            return response;
         }
 
         public bool UpdateBrand(BrandUpdateRequest request, [Service] AppDbContext context)

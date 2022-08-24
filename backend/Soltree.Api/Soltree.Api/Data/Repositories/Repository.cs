@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Soltree.Api.Data.Etities;
+using Soltree.Api.Data.Entities;
 
 namespace Soltree.Api.Data.Repositories
 {

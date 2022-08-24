@@ -1,7 +1,7 @@
 ﻿using Soltree.Api.Data;
 using Soltree.Api.Data.Dtos;
 using Soltree.Api.Data.Dtos.Type;
-using Soltree.Api.Data.Etities;
+using Soltree.Api.Data.Entities;
 
 namespace Soltree.Api.Graphql.Mutations
 {
@@ -10,7 +10,7 @@ namespace Soltree.Api.Graphql.Mutations
     {
         public InsertResponse InsertDeviceType(DeviceTypeInsertRequest request, [Service] AppDbContext context)
         {
-            var respone = new InsertResponse();
+            var response = new InsertResponse();
             var type = new DeviceType()
             {
                 Name = request.Name,
@@ -20,9 +20,9 @@ namespace Soltree.Api.Graphql.Mutations
             context.DeviceTypes.Add(type);
             context.SaveChanges();
 
-            respone.Id = type.Id;
+            response.Id = type.Id;
 
-            return respone;
+            return response;
         }
 
         public bool UpdateDeviceType(DeviceTypeUpdateRequest request, [Service] AppDbContext context)

@@ -21,7 +21,7 @@ namespace Soltree.Api.Data
 
             for (int i = 0; i < 10; i++)
             {
-                dbContext.Brands.Add(new Etities.Brand()
+                dbContext.Brands.Add(new Entities.Brand()
                 {
                     Id = Guid.NewGuid(),
                     Name = $"Brand - {i + 1}"

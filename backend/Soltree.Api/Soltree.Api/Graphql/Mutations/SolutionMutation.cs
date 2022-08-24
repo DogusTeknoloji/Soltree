@@ -1,7 +1,7 @@
 ﻿using Soltree.Api.Data;
 using Soltree.Api.Data.Dtos;
 using Soltree.Api.Data.Dtos.Solution;
-using Soltree.Api.Data.Etities;
+using Soltree.Api.Data.Entities;
 
 namespace Soltree.Api.Graphql.Mutations
 {
@@ -10,19 +10,20 @@ namespace Soltree.Api.Graphql.Mutations
     {
         public InsertResponse InsertSolution(SolutionInsertRequest request, [Service] AppDbContext context)
         {
-            var respone = new InsertResponse();
+            var response = new InsertResponse();
             var solution = new Solution()
             {
                 Title = request.Title,
-                Description = request.Description
+                Description = request.Description,
+                SymptomId = request.SymptomId
             };
 
             context.Solutions.Add(solution);
             context.SaveChanges();
 
-            respone.Id = solution.Id;
+            response.Id = solution.Id;
 
-            return respone;
+            return response;
         }
 
         public bool UpdateSolution(SolutionUpdateRequest request, [Service] AppDbContext context)
@@ -33,6 +34,7 @@ namespace Soltree.Api.Graphql.Mutations
             {
                 solution.Title = request.Title;
                 solution.Description = request.Description;
+                solution.SymptomId = request.SymptomId;
 
                 context.SaveChanges();
 

@@ -15,9 +15,9 @@
       </Card>
     </div>
 
-    <div>
+    <!--<div>
       <CircleMenu :items="circleMenuItems"/>
-    </div>
+    </div>-->
 
     <div class="flex align-items-center justify-content-center" style="width: 50%;">
       <KeepAlive>
@@ -31,17 +31,17 @@
 import { ref, shallowRef, defineAsyncComponent } from 'vue';
 import { useRouter } from 'vue-router';
 import { useWizardStore } from "../store/wizardStore";
-import CircleMenu from '../components/CircleMenu.vue';
+//import CircleMenu from '../components/CircleMenu.vue';
 
-const circleMenuItems = ref<any[]>([
-  { Label: "Güç ve Şarj", Rotate: -360 },
-  { Label: "Görüntü ve Ekran", Rotate: -360 },
-  { Label: "Ses ve Müzik", Rotate: -360 },
-  { Label: "Şebeke ve Sinyal", Rotate: -360 },
-  { Label: "Fotoğraf Video Çekimi", Rotate: -360 },
-  { Label: "Hafıza ve Uygulamalar", Rotate: -360 },
-  { Label: "Diğerleri", Rotate: -360 },
-]);
+//const circleMenuItems = ref<any[]>([
+//  { Label: "Güç ve Şarj", Rotate: -360 },
+//  { Label: "Görüntü ve Ekran", Rotate: -360 },
+//  { Label: "Ses ve Müzik", Rotate: -360 },
+//  { Label: "Şebeke ve Sinyal", Rotate: -360 },
+//  { Label: "Fotoğraf Video Çekimi", Rotate: -360 },
+//  { Label: "Hafıza ve Uygulamalar", Rotate: -360 },
+//  { Label: "Diğerleri", Rotate: -360 },
+//]);
 
 const wizardStore = useWizardStore();
 
@@ -61,6 +61,10 @@ const items = ref([
   {
     label: 'Çözüm Önerileri',
     component: shallowRef(defineAsyncComponent(() => import('@/components/WizardItemSolution.vue')))
+  },
+  {
+    label: 'Sonuç',
+    component: shallowRef(defineAsyncComponent(() => import('@/components/WizardItemCompleted.vue')))
   }
 ]);
 

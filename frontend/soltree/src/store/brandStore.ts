@@ -7,7 +7,7 @@ export const useBrandStore = defineStore("brandStore", {
       selectedModel: null as string | undefined | null,
       selectedDeviceType: null as string | undefined | null,
       selectedSymptom: null as string | undefined | null,
-      toast: false,
+      isSolved: null as boolean | undefined | null
     };
   },
 });
