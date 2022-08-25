@@ -1,4 +1,27 @@
 <template>
+  <Toast />
+        <Toast position="top-left" group="tl">
+            <template #message="slotProps">
+                <div class="flex flex-column">
+                    <div class="text-center">
+                        <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+                        <h4>{{slotProps.message.summary}}</h4>
+                        <p>{{slotProps.message.detail}}</p>
+                    </div>
+                    <div class="grid p-fluid">
+                        <div class="col-6">
+                            <Button class="p-button-success" label="Yes" @click="nextPage"></Button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </Toast>
+  
+  
+  
+  
+  
+  
   <Card style="width: 100%" class="fadein animation-duration-300">
     <template #content>
       <div class="text-center">
@@ -32,9 +55,13 @@ import { computed, onActivated, ref, watch } from 'vue';
 import { useGetModelsByBrandandDeviceQuery, useDeviceTypeImageQuery } from '../graphql';
 import { useBrandStore } from '../store/brandStore';
 import { useWizardStore } from '../store/wizardStore';
+import { useToast } from 'primevue/usetoast'
 
 const wizardStore = useWizardStore();
 const brandStore = useBrandStore();
+
+const toast = useToast();
+
 
 const { selectedBrand } = storeToRefs(brandStore);
 
@@ -70,6 +97,10 @@ const nextPage = () => {
   brandStore.selectedModel = selectedModel.value;
   if (brandStore.selectedModel != null) {
     wizardStore.next();
+  }
+  else {
+    toast.add({severity:'error', summary: 'Hata Mesajı', detail:'Cihaz tipinizi ve modelinizi seçmeden bir sonraki adıma devam edemezsiniz.', life: 3000});
+
   }
 };
 
