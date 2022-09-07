@@ -1,10 +1,12 @@
 # Soltree
  
 ### Kullanılan Teknolojiler
-![vitetest](https://user-images.githubusercontent.com/55712037/188872626-c7eb7c0c-7bca-453e-91bc-4e3c0801639c.png)
-![docker](https://user-images.githubusercontent.com/55712037/188872872-33ca0ebd-2dc2-442a-83eb-8bf1ba811f7e.jpg)
-![avatar](https://user-images.githubusercontent.com/55712037/188873229-fd1a332d-02a7-434c-9ef5-d186af17e4ad.png)
-![icon](https://user-images.githubusercontent.com/55712037/188873233-0ad931dd-5e2a-4e2c-b4a5-b1a1e8879d43.png)
+![net6](https://user-images.githubusercontent.com/55712037/188874184-fe275a7d-9a98-424a-b59c-ce6b1dc9e0f6.png)
+![graphqltest](https://user-images.githubusercontent.com/55712037/188874190-d22f077b-169b-4e45-8768-1bbfa4bbd039.png)
+![hotchotest](https://user-images.githubusercontent.com/55712037/188874201-a3331850-4961-44df-951f-2cfafdaae120.png)
+![dockertest](https://user-images.githubusercontent.com/55712037/188874211-a469ecec-124d-4f4c-8685-cdd24992461e.png)
+![vitetest](https://user-images.githubusercontent.com/55712037/188874248-e6d088dc-4e17-4a53-8eb7-e368d480a483.png)
+
 
 
 # Build and Test
