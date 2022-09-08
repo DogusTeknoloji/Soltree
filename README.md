@@ -1,5 +1,5 @@
 # Soltree - Çözüm Ağacı
-## .Net 6 + GraphQL +  Vue.js 3 Örnek Uygulama 
+#### .Net 6 + GraphQL +  Vue.js 3 Örnek Uygulama 
 Soltree, son kullanıcının elektronik cihazında yaşadığı problemi giderebilmesi için, seçtiği marka, model ve yaşadığı probleme ilişik çözüm önerileri alabileceği bir web uygulamasıdır. 
 ## Backend
 .Net 6 da Hot Chocolete GraphQL'den faydalanılarak  PostgreSQL veritabanı kullanılanılarak geliştirildi. Uygulama ve veritabanı Docker ile Containerization yapılmıştır. 
