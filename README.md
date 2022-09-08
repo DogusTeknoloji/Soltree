@@ -1,20 +1,26 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Soltree
+ 
+### Kullanılan Teknolojiler
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+| ![net6](https://user-images.githubusercontent.com/55712037/188874184-fe275a7d-9a98-424a-b59c-ce6b1dc9e0f6.png) | ![graphqltest](https://user-images.githubusercontent.com/55712037/188874721-00f57520-22f5-4b29-abc9-62de807333b3.png) | ![hotchotest](https://user-images.githubusercontent.com/55712037/188874201-a3331850-4961-44df-951f-2cfafdaae120.png) | ![dockertest](https://user-images.githubusercontent.com/55712037/188874211-a469ecec-124d-4f4c-8685-cdd24992461e.png) |
+|:---:|:---:|:---:|:---:|
+| .Net Core 6  | GraphQL  | Hot Chocolate | Docker |
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+| ![vuejstest](https://user-images.githubusercontent.com/55712037/188875887-ef7e0956-8c14-4fea-9995-b992844ae130.png) | ![vitetest](https://user-images.githubusercontent.com/55712037/188874248-e6d088dc-4e17-4a53-8eb7-e368d480a483.png) | ![piniatest](https://user-images.githubusercontent.com/55712037/188876234-c4317a63-35f6-417a-a268-33654b520586.png) | ![postgresqltest](https://user-images.githubusercontent.com/55712037/188887094-5a7e8f5a-e68f-4303-9980-8c85d60b92f5.png) |![primevuetest](https://user-images.githubusercontent.com/55712037/188887814-182960cb-56f5-49c0-886a-97c7ee9682e0.png) |
+|:---:|:---:|:---:|:---:|:---:|
+| Vue.js 3 | Vite.js | Pinia | PostgreSQL | Primevue |
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+------------
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+### Teknolojileri Nerede Kullandık
+- Visual Studio 2022 üzerinde .net core 6 ve graphql kullanarak web uygulamasının backend'ini inşaa ettik.
+- GraphQL kütüphanesi olan Hot Chocolate'tan yararlandık.
+- Farklı bilgisayarlarda uygulamayı çalıştırırken sıkıntı yaşamamak adına veritabanımızı ve api'ımızı docker üzerinden ayağa kaldırdık. (Docker compose)
+- Uygulamanın frontend kısmında vue js versiyon 3
+## Proje Hakkında
+
+#### Soltree, kullanıcıya kullandığı elektronik cihazda yaşadığı soruna karşılık çözüm önerileri sunan bir web uygulamasıdır.
+- 
+- 
+- 
+- 
