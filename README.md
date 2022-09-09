@@ -15,5 +15,5 @@ Vue.js 3 JS frameworkü kullanılarak geliştirildi. Derleme aracı olarak Vite.
 | Vue.js 3 | Vite.js | Pinia | PostgreSQL | Primevue |
 
 ## Geliştiriciler
-Doğuş Teknoloji Geleceğe Giriş Programı kapsamında, Mehmet Emin Eker mentorlüğünde Ahmet Anıl Özsoy ve Batuhan Çetin tarafından geliştirildi.
+Doğuş Teknoloji Geleceğe Giriş Programı kapsamında, [Mehmet Emin Eker](https://github.com/mehmetemineker "Mehmet Emin Eker") mentorlüğünde [Ahmet Anıl Özsoy](https://github.com/aanilozsoy "Ahmet Anıl Özsoy") ve [Batuhan Çetin](https://github.com/batuhancetin "Batuhan Çetin") tarafından geliştirildi.
 [![Doğuş Teknoloji - Geleceğe Giriş](https://www.gelecegegiris.com/assets/images/2022/220125_DT_GG_2022_Banner_1140x260_3_blue.jpeg "Doğuş Teknoloji - Geleceğe Giriş")](https://www.gelecegegiris.com/ "Doğuş Teknoloji - Geleceğe Giriş")
