@@ -1,11 +1,12 @@
 # Soltree - Çözüm Ağacı
 Soltree, son kullanıcının elektronik cihazında yaşadığı problemi giderebilmesi için, seçtiği marka, model ve yaşadığı probleme ilişik çözüm önerileri alabileceği bir web uygulamasıdır. 
+## Projenin Uygulamalı Gösterimi
+![WhatsApp Video 2022-09-12 at 15 12 41](https://user-images.githubusercontent.com/77202451/189651479-ea5191fb-6dc3-4458-9408-54fe8ada83b0.gif)
+
 ## Backend
 .Net 6 da Hot Chocolete GraphQL'den faydalanılarak  PostgreSQL veritabanı kullanılanılarak geliştirildi. Uygulama ve veritabanı Docker ile Containerization yapılmıştır. 
 ## Frontend
 Vue.js 3 JS frameworkü kullanılarak geliştirildi. Derleme aracı olarak Vite.js tercih edildi. State Management tarafında Pinia kullanıldı. Vue.js componentleri PrimeVue ile karşılandı. Vue.js 3 ile birlikte varsayılan olarak gelmeye başlayan Composition API prensibine göre geliştirilme yapıldı.
-## Projenin Uygulamalı Gösterimi
-![WhatsApp Video 2022-09-12 at 15 12 41](https://user-images.githubusercontent.com/77202451/189651479-ea5191fb-6dc3-4458-9408-54fe8ada83b0.gif)
 
 ## Kullanılan Tüm Teknolojiler
 
