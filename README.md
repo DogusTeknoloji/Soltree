@@ -4,6 +4,9 @@ Soltree, son kullanıcının elektronik cihazında yaşadığı problemi gidereb
 .Net 6 da Hot Chocolete GraphQL'den faydalanılarak  PostgreSQL veritabanı kullanılanılarak geliştirildi. Uygulama ve veritabanı Docker ile Containerization yapılmıştır. 
 ## Frontend
 Vue.js 3 JS frameworkü kullanılarak geliştirildi. Derleme aracı olarak Vite.js tercih edildi. State Management tarafında Pinia kullanıldı. Vue.js componentleri PrimeVue ile karşılandı. Vue.js 3 ile birlikte varsayılan olarak gelmeye başlayan Composition API prensibine göre geliştirilme yapıldı.
+## Projenin Uygulamalı Gösterimi
+![WhatsApp Video 2022-09-12 at 15 12 41](https://user-images.githubusercontent.com/77202451/189651479-ea5191fb-6dc3-4458-9408-54fe8ada83b0.gif)
+
 ## Kullanılan Tüm Teknolojiler
 
 | ![net6](https://user-images.githubusercontent.com/55712037/188874184-fe275a7d-9a98-424a-b59c-ce6b1dc9e0f6.png) | ![graphqltest](https://user-images.githubusercontent.com/55712037/188874721-00f57520-22f5-4b29-abc9-62de807333b3.png) | ![hotchotest](https://user-images.githubusercontent.com/55712037/188874201-a3331850-4961-44df-951f-2cfafdaae120.png) | ![dockertest](https://user-images.githubusercontent.com/55712037/188874211-a469ecec-124d-4f4c-8685-cdd24992461e.png) |
